@@ -1,22 +1,44 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
-import {TextInput, Headline, Button} from 'react-native-paper';
+import {
+  TextInput,
+  Headline,
+  Button,
+  Portal,
+  Dialog,
+  Paragraph,
+} from 'react-native-paper';
+import axios from 'axios';
 
 import globalStyles from '../styles/global';
 
-const NuevoCliente = () => {
+const NuevoCliente = ({navigation}) => {
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [correo, setCorreo] = useState('');
   const [empresa, setEmpresa] = useState('');
+  const [alerta, guadarAlerta] = useState(false);
 
   //Almacenara el cliente
-  const guardarCliente =()=>{
-    if(nombre === ''  || telefono===''  || correo ===''  || empresa===''){
-      console.log('hay campos vacios baboso')
+  const guardarCliente = async () => {
+    if (nombre === '' || telefono === '' || correo === '' || empresa === '') {
+      guadarAlerta(true);
+      return;
     }
 
-  }
+    const cliente = {nombre, telefono, correo, empresa};
+    console.log(cliente);
+    try {
+      await axios.post('http://192.168.0.17:3000/clientes', cliente);
+    } catch (error) {
+      console.log(error);
+    }
+    navigation.navigate('Inicio');
+    setNombre('');
+    setCorreo('');
+    setEmpresa('');
+    setTelefono('');
+  };
 
   return (
     <View style={globalStyles.contenedor}>
@@ -52,7 +74,25 @@ const NuevoCliente = () => {
         onChangeText={texto => setEmpresa(texto)}
         style={styles.input}
       />
-      <Button icon={'pencil-circle'} mode='contained' onPress={()=>guardarCliente()} >Guardar Cliente</Button>
+      <Button
+        icon={'pencil-circle'}
+        mode="contained"
+        onPress={() => guardarCliente()}
+      >
+        Guardar Cliente
+      </Button>
+
+      <Portal>
+        <Dialog visible={alerta} onDismiss={() => guadarAlerta(false)}>
+          <Dialog.Title>Error</Dialog.Title>
+          <Dialog.Content>
+            <Paragraph>Todos los campos son obligatorios</Paragraph>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={() => guadarAlerta(false)}>OK</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     </View>
   );
 };

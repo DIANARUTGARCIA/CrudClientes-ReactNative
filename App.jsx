@@ -23,6 +23,7 @@ const theme = {
 function App() {
   return (
     <>
+    <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -67,6 +68,7 @@ function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </PaperProvider>
     </>
   );
 }
