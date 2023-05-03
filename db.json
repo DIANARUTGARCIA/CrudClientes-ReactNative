@@ -1,25 +1,11 @@
 {
   "clientes": [
     {
-      "nombre": "Katy",
-      "telefono": "466889u",
-      "correo": "Diana",
-      "empresa": "Carro",
-      "id": 1
-    },
-    {
-      "nombre": "Raquel",
+      "nombre": "Raquel 2",
       "telefono": "6789990",
       "correo": "Raquel@gmail.com ",
       "empresa": "Lafhise",
       "id": 2
-    },
-    {
-      "nombre": "Samuel",
-      "telefono": "45566923e",
-      "correo": "samuel@gmail.com ",
-      "empresa": "Laryuu",
-      "id": 3
     },
     {
       "nombre": "Rocio",

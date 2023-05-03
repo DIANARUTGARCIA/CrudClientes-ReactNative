@@ -32,7 +32,7 @@ const Inicio = ({navigation}) => {
       
       <FlatList
         data={clientes}
-        keyExtractor={cliente => cliente.id.toString()}
+        keyExtractor={cliente => (cliente.id).toString()}
         renderItem={({item}) => (
           <List.Item title={item.nombre} description={item.empresa} 
           onPress={()=>navigation.navigate('DetallesCliente',{item})}/>
