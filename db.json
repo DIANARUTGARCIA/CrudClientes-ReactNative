@@ -13,6 +13,20 @@
       "correo": "Raquel@gmail.com ",
       "empresa": "Lafhise",
       "id": 2
+    },
+    {
+      "nombre": "Samuel",
+      "telefono": "45566923e",
+      "correo": "samuel@gmail.com ",
+      "empresa": "Laryuu",
+      "id": 3
+    },
+    {
+      "nombre": "Rocio",
+      "telefono": "24567ii",
+      "correo": "Rocio@gmail.com ",
+      "empresa": "Unah",
+      "id": 4
     }
   ]
 }
