@@ -5,6 +5,7 @@ import globalStyles from '../styles/global';
 import axios from 'axios';
 
 const DetallesCliente = ({route, navigation}) => {
+  const {guardarConsultarAPI} = route.params;
   const {nombre, correo, telefono, empresa, id} = route.params.item;
 
   const mostrarConfirmacion = () => {
@@ -25,6 +26,7 @@ const DetallesCliente = ({route, navigation}) => {
       console.log(error);
     }
     navigation.navigate('Inicio');
+    guardarConsultarAPI(true);
   };
 
   return (
@@ -50,7 +52,10 @@ const DetallesCliente = ({route, navigation}) => {
 
       <FAB
         onPress={() =>
-          navigation.navigate('NuevoCliente', {cliente: route.params.item})
+          navigation.navigate('NuevoCliente', {
+            cliente: route.params.item,
+            guardarConsultarAPI,
+          })
         }
         color="#fff"
         icon={'pencil'}

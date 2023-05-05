@@ -1,18 +1,25 @@
 {
   "clientes": [
     {
-      "nombre": "Raquel 2",
-      "telefono": "6789990",
-      "correo": "Raquel@gmail.com ",
-      "empresa": "Lafhise",
-      "id": 2
-    },
-    {
       "nombre": "Rocio",
       "telefono": "24567ii",
       "correo": "Rocio@gmail.com ",
       "empresa": "Unah",
       "id": 4
+    },
+    {
+      "nombre": "Daniela ",
+      "telefono": "987612278",
+      "correo": "daniela@gmail.com",
+      "empresa": "Codeui",
+      "id": 5
+    },
+    {
+      "nombre": "Samuel ",
+      "telefono": "98765442",
+      "correo": "samuel@gmail.com",
+      "empresa": "Proconsumo",
+      "id": 6
     }
   ]
 }

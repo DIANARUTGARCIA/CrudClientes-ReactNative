@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {
   TextInput,
   Headline,
@@ -13,6 +13,7 @@ import axios from 'axios';
 import globalStyles from '../styles/global';
 
 const NuevoCliente = ({navigation, route}) => {
+  const {guardarConsultarAPI} = route.params;
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [correo, setCorreo] = useState('');
@@ -39,7 +40,7 @@ const NuevoCliente = ({navigation, route}) => {
     const cliente = {nombre, telefono, correo, empresa};
     console.log(cliente);
     //Guardar o editar un nuevo cliente
-    if (route.params.cliente) {
+    if (route.params?.cliente) {
       const {id} = route.params.cliente;
       cliente.id = id;
       const url = `http://192.168.0.17:3000/clientes/${id}`;
@@ -55,29 +56,35 @@ const NuevoCliente = ({navigation, route}) => {
         console.log(error);
       }
     }
-
     navigation.navigate('Inicio');
     setNombre('');
     setCorreo('');
     setEmpresa('');
     setTelefono('');
+    //Cambiando el estado
+    guardarConsultarAPI(true);
   };
 
   return (
     <View style={globalStyles.contenedor}>
-      <Headline style={globalStyles.titulo}>Añadir Nuevo Cliente</Headline>
+      <Headline style={globalStyles.titulo}>
+        {route.params.cliente ? 'Editar Cliente' : 'Añadir Nuevo Cliente'}
+      </Headline>
       <TextInput
         label={'Nombre'}
         placeholder="Tu nombre"
         value={nombre}
         onChangeText={texto => setNombre(texto)}
         style={styles.input}
+        maxLength={30}
       />
 
       <TextInput
         label={'Telefono'}
         placeholder="9565656"
         value={telefono}
+        keyboardType="numeric"
+        maxLength={8}
         onChangeText={texto => setTelefono(texto)}
         style={styles.input}
       />
@@ -88,6 +95,7 @@ const NuevoCliente = ({navigation, route}) => {
         value={correo}
         onChangeText={texto => setCorreo(texto)}
         style={styles.input}
+        maxLength={30}
       />
 
       <TextInput
@@ -96,13 +104,14 @@ const NuevoCliente = ({navigation, route}) => {
         value={empresa}
         onChangeText={texto => setEmpresa(texto)}
         style={styles.input}
+        maxLength={30}
       />
       <Button
         icon={'pencil-circle'}
         mode="contained"
         onPress={() => guardarCliente()}
       >
-        Guardar Cliente
+        {route.params.cliente ? 'Editar Cliente' : 'Guardar Cliente'}
       </Button>
 
       <Portal>
